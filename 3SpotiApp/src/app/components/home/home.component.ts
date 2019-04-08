@@ -10,18 +10,19 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class HomeComponent{
 
-  nuevasCanciones : any[] = [];
+  nuevasCanciones : any [] =[];
 
+  loading : boolean;
   constructor(private spotify :SpotifyService) { 
 
-    this.spotify.getNewReleases().subscribe((respuesta:any)=>{
-     this.nuevasCanciones=respuesta
+    this.loading=true;
+    this.spotify.getNewReleases().subscribe((respuesta : any )=>{
+     this.nuevasCanciones=respuesta;
+     this.loading=false;
      console.log(respuesta);
     });
     
     }
-  
-
   ngOnInit() {
   }
 
